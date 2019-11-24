@@ -33,10 +33,7 @@ export default function CategoryContainer(props) {
 
   return (
     <View style={styles.gridItem}>
-      <TouchableCmpnt
-        style={{ flex: 1, width: 200, height: 180 }}
-        onPress={props.onPressHandler}
-      >
+      <TouchableCmpnt style={{ flex: 1 }} onPress={props.onPressHandler}>
         <View
           style={{
             ...styles.container,
