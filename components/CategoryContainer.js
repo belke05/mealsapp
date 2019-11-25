@@ -10,8 +10,12 @@ import {
   Platform
 } from "react-native";
 import { ScreenOrientation } from "expo";
+import images from "../assets/Images/index";
 
 export default function CategoryContainer(props) {
+  let name = null;
+  name = props.name;
+  console.log(name);
   const [dimensions, setDimensions] = useState({
     height: Dimensions.get("window").height,
     width: Dimensions.get("window").width
@@ -42,7 +46,7 @@ export default function CategoryContainer(props) {
         >
           <View style={{ width: "80%", height: "80%" }}>
             <Image
-              source={require(`../assets/Images/lunch.png`)}
+              source={image[props.imageName]}
               style={styles.image}
               resizeMode="contain"
             />
@@ -53,36 +57,6 @@ export default function CategoryContainer(props) {
     </View>
   );
 }
-
-// const styles = StyleSheet.create({
-//
-//   imageContainer: {
-//     height: 150,
-//     width: 200,
-//     flex: 1,
-//     padding: 5,
-//     borderWidth: 3,
-//     borderRadius: 10,
-//     shadowColor: "black",
-//     shadowOpacity: 0.25,
-//     shadowOffset: { width: 0, height: 2 },
-//     shadowRadius: 10,
-//     elevation: 3,
-//     margin: 10
-//   },
-//   title: {
-//     fontSize: 22,
-//     fontWeight: "bold"
-//   },
-//   gridItem: {
-//     flex: 1,
-//     height: 150,
-//     width: 200,
-//     margin: 15,
-//     alignItems: "center",
-//     justifyContent: "center"
-//   }
-// });
 
 const styles = StyleSheet.create({
   gridItem: {

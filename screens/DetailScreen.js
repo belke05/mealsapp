@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import CustomButton from "../components/CustomButton";
 
 export default function DetailScreen(props) {
+  // const meal = props.navigation.getParam("meal");
+
   const goToHome = () => {
     props.navigation.popToTop();
   };
