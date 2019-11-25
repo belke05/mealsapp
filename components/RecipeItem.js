@@ -18,13 +18,17 @@ export default function RecipeItem(props) {
   }
 
   return (
-    <View style={styles.gridItem}>
-      <TouchableCmpnt onPress={props.onPressHandler}>
+    <View style={styles.mealItem}>
+      <TouchableOpacity onPress={props.onPressHandler}>
         <View>
           <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
-            <Text style={styles.headerText}>Title: {props.meal.title}</Text>
+            <ImageBackground style={styles.bgImg} source={{ uri: props.img }}>
+              <View style={styles.titleContainer}>
+                <Text style={styles.headerText}>Title: {props.meal.title}</Text>
+              </View>
+            </ImageBackground>
           </View>
-          <View style={{ ...styles.mealRow, ...styles.mealDetails }}>
+          <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
             <Text style={styles.title}>
               prep time: {props.meal.duration}min
             </Text>
@@ -32,34 +36,49 @@ export default function RecipeItem(props) {
             <Text style={styles.title}>{props.meal.affordability}</Text>
           </View>
         </View>
-      </TouchableCmpnt>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  gridItem: {
-    width: "90%",
-    backgroundColor: "grey",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    margin: "4%",
-    height: 200
+  mealItem: {
+    height: 200,
+    width: "100%",
+    backgroundColor: "#f5f5f5",
+    borderRadius: 10,
+    overflow: "hidden",
+    marginVertical: 10
   },
-  headerText: {
-    color: "white",
-    textAlign: "center"
+  bgImg: {
+    width: "100%",
+    height: "100%",
+    justifyContent: "flex-end"
   },
   mealRow: {
     flexDirection: "row"
   },
   mealHeader: {
-    height: "80%"
+    height: "85%"
   },
-  mealDetails: {
-    height: "10%",
-    paddingHorizontal: "1%",
-    justifyContent: "space-around"
+  mealDetail: {
+    paddingHorizontal: 10,
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: "15%",
+    backgroundColor: "black"
+  },
+  titleContainer: {
+    backgroundColor: "rgba(0,0,0,0.5)",
+    paddingVertical: 5,
+    paddingHorizontal: 12
+  },
+  title: {
+    fontSize: 20,
+    color: "white",
+    textAlign: "center"
+  },
+  headerText: {
+    color: "white"
   }
 });

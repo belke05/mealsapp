@@ -6,7 +6,13 @@ export default function RecipeList(props) {
   console.log(props.meals);
   const renderMealItem = itemData => {
     const { item } = itemData;
-    return <RecipeItem meal={item} onPressHandler={props.onPressHandler} />;
+    return (
+      <RecipeItem
+        img={item.imageUrl}
+        meal={item}
+        onPressHandler={props.onPressHandler}
+      />
+    );
   };
 
   return (

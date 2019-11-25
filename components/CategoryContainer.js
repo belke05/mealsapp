@@ -10,7 +10,7 @@ import {
   Platform
 } from "react-native";
 import { ScreenOrientation } from "expo";
-import images from "../assets/Images/index";
+import Images from "../assets/Images/index";
 
 export default function CategoryContainer(props) {
   let name = null;
@@ -46,7 +46,7 @@ export default function CategoryContainer(props) {
         >
           <View style={{ width: "80%", height: "80%" }}>
             <Image
-              source={image[props.imageName]}
+              source={Images[props.name]}
               style={styles.image}
               resizeMode="contain"
             />
