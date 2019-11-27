@@ -10,12 +10,8 @@ import {
   Platform
 } from "react-native";
 import { ScreenOrientation } from "expo";
-import Images from "../assets/Images/index";
 
 export default function CategoryContainer(props) {
-  let name = null;
-  name = props.name;
-  console.log(name);
   const [dimensions, setDimensions] = useState({
     height: Dimensions.get("window").height,
     width: Dimensions.get("window").width
@@ -46,7 +42,9 @@ export default function CategoryContainer(props) {
         >
           <View style={{ width: "80%", height: "80%" }}>
             <Image
-              source={Images[props.name]}
+              source={{
+                uri: props.imgurl
+              }}
               style={styles.image}
               resizeMode="contain"
             />

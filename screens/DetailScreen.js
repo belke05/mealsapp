@@ -1,10 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import CustomButton from "../components/CustomButton";
-
+import { Meals } from "../data/test_data";
 export default function DetailScreen(props) {
-  // const meal = props.navigation.getParam("meal");
-
+  const mealId = props.navigation.getParam("meal");
+  const meal = Meals.find(({ id }) => {
+    return id == mealId;
+  });
+  console.log(meal);
   const goToHome = () => {
     props.navigation.popToTop();
   };

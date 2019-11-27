@@ -2,12 +2,42 @@ import Category from "../models/category";
 import Meal from "../models/meal";
 
 export const Categories = [
-  new Category("c1", "Breakfast", "gray"),
-  new Category("c2", "Lunch", "gray"),
-  new Category("c3", "Dinner", "gray"),
-  new Category("c4", "Snacks", "gray"),
-  new Category("c5", "Drinks", "gray"),
-  new Category("c6", "Other", "gray")
+  new Category(
+    "c1",
+    "Breakfast",
+    "gray",
+    "https://res.cloudinary.com/dri8yyakb/image/upload/v1574844025/icons_meal_planner/breakfast_puxfq4.png"
+  ),
+  new Category(
+    "c2",
+    "Lunch",
+    "gray",
+    "https://res.cloudinary.com/dri8yyakb/image/upload/v1574844025/icons_meal_planner/lunch_fy93hh.png"
+  ),
+  new Category(
+    "c3",
+    "Dinner",
+    "gray",
+    "https://res.cloudinary.com/dri8yyakb/image/upload/v1574844025/icons_meal_planner/dinner_lluifw.png"
+  ),
+  new Category(
+    "c4",
+    "Snacks",
+    "gray",
+    "https://res.cloudinary.com/dri8yyakb/image/upload/v1574844198/icons_meal_planner/pistachio_jscvgb.png"
+  ),
+  new Category(
+    "c5",
+    "Drinks",
+    "gray",
+    "https://res.cloudinary.com/dri8yyakb/image/upload/v1574844256/icons_meal_planner/cocktail_fpt3nq.png"
+  ),
+  new Category(
+    "c6",
+    "Other",
+    "gray",
+    "https://res.cloudinary.com/dri8yyakb/image/upload/v1574844350/icons_meal_planner/dices_pzojlq.png"
+  )
 ];
 
 export const Meals = [

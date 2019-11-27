@@ -3,14 +3,15 @@ import { Text, View, FlatList, StyleSheet } from "react-native";
 import RecipeItem from "./RecipeItem";
 
 export default function RecipeList(props) {
-  console.log(props.meals);
   const renderMealItem = itemData => {
     const { item } = itemData;
     return (
       <RecipeItem
         img={item.imageUrl}
         meal={item}
-        onPressHandler={props.onPressHandler}
+        // bind the meal id so it gets used on click
+        // in the recipe item component
+        onPressHandler={props.onPressHandler.bind(item.id)}
       />
     );
   };

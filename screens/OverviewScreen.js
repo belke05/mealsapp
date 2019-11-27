@@ -6,20 +6,22 @@ import colors from "../constants/Colors/Colors";
 
 export default function OverviewScreen(props) {
   function renderGridItem(itemData) {
+    const onPressHandler = () => {
+      props.navigation.navigate({
+        routeName: "Category",
+        params: {
+          categoryId: item.id,
+          categoryName: item.name
+        }
+      });
+    };
     const { item } = itemData;
     return (
       <CategoryContainer
         name={item.name}
         bgcolor={item.color}
-        onPressHandler={() => {
-          props.navigation.navigate({
-            routeName: "Category",
-            params: {
-              categoryId: item.id,
-              categoryName: item.name
-            }
-          });
-        }}
+        imgurl={item.imgurl}
+        onPressHandler={onPressHandler}
       />
     );
   }

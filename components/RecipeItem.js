@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Text,
   View,
@@ -10,6 +10,7 @@ import {
   Platform
 } from "react-native";
 import { ScreenOrientation } from "expo";
+import colors from "../constants/Colors/Colors";
 
 export default function RecipeItem(props) {
   let TouchableCmpnt = TouchableOpacity;
@@ -19,24 +20,22 @@ export default function RecipeItem(props) {
 
   return (
     <View style={styles.mealItem}>
-      <TouchableOpacity onPress={props.onPressHandler}>
+      <TouchableCmpnt onPress={props.onPressHandler}>
         <View>
           <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
             <ImageBackground style={styles.bgImg} source={{ uri: props.img }}>
               <View style={styles.titleContainer}>
-                <Text style={styles.headerText}>Title: {props.meal.title}</Text>
+                <Text style={styles.headerText}>{props.meal.title}</Text>
               </View>
             </ImageBackground>
           </View>
           <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-            <Text style={styles.title}>
-              prep time: {props.meal.duration}min
-            </Text>
+            <Text style={styles.title}>{props.meal.duration}min</Text>
             <Text style={styles.title}>{props.meal.complexity}</Text>
             <Text style={styles.title}>{props.meal.affordability}</Text>
           </View>
         </View>
-      </TouchableOpacity>
+      </TouchableCmpnt>
     </View>
   );
 }
@@ -44,11 +43,12 @@ export default function RecipeItem(props) {
 const styles = StyleSheet.create({
   mealItem: {
     height: 200,
-    width: "100%",
-    backgroundColor: "#f5f5f5",
+    width: "95%",
+    backgroundColor: "white",
     borderRadius: 10,
     overflow: "hidden",
-    marginVertical: 10
+    marginVertical: 10,
+    marginHorizontal: 10
   },
   bgImg: {
     width: "100%",
@@ -66,7 +66,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     height: "15%",
-    backgroundColor: "black"
+    backgroundColor: colors.darkblue,
+    justifySelf: "flex-end"
   },
   titleContainer: {
     backgroundColor: "rgba(0,0,0,0.5)",
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12
   },
   title: {
-    fontSize: 20,
+    fontSize: 15,
     color: "white",
     textAlign: "center"
   },
