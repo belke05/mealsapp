@@ -20,7 +20,11 @@ export default function RecipeItem(props) {
 
   return (
     <View style={styles.mealItem}>
-      <TouchableCmpnt onPress={props.onPressHandler}>
+      <TouchableCmpnt
+        onPress={() => {
+          props.onPressHandler(props.meal.id);
+        }}
+      >
         <View>
           <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
             <ImageBackground style={styles.bgImg} source={{ uri: props.img }}>
@@ -72,7 +76,8 @@ const styles = StyleSheet.create({
   titleContainer: {
     backgroundColor: "rgba(0,0,0,0.5)",
     paddingVertical: 5,
-    paddingHorizontal: 12
+    paddingHorizontal: 12,
+    textAlign: "center"
   },
   title: {
     fontSize: 15,
@@ -80,6 +85,8 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   headerText: {
-    color: "white"
+    color: "white",
+    textAlign: "center",
+    fontSize: 17
   }
 });

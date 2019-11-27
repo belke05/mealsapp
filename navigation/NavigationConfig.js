@@ -20,10 +20,7 @@ const MainNavigator = createStackNavigator(
     },
     Category: { screen: CategoryScreen },
     Detail: {
-      screen: DetailScreen,
-      navigationOptions: {
-        headerTitle: "Details"
-      }
+      screen: DetailScreen
     }
   },
   {

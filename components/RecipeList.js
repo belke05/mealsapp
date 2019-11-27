@@ -5,13 +5,14 @@ import RecipeItem from "./RecipeItem";
 export default function RecipeList(props) {
   const renderMealItem = itemData => {
     const { item } = itemData;
+    console.log("item id", item.id);
     return (
       <RecipeItem
         img={item.imageUrl}
         meal={item}
         // bind the meal id so it gets used on click
         // in the recipe item component
-        onPressHandler={props.onPressHandler.bind(item.id)}
+        onPressHandler={props.onPressHandler}
       />
     );
   };

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import * as Font from "expo-font";
-import { Ionicons } from "@expo/vector-icons";
 import StackNavigation from "./navigation/NavigationConfig";
 import { AppLoading } from "expo";
 import { useScreens } from "react-native-screens";
