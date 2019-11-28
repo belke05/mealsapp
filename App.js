@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as Font from "expo-font";
-import StackNavigation from "./navigation/NavigationConfig";
+import RootNavigator from "./navigation/NavigationConfig";
 import { AppLoading } from "expo";
 import { useScreens } from "react-native-screens";
 
@@ -32,6 +32,6 @@ export default class App extends Component {
         />
       );
     }
-    return <StackNavigation />;
+    return <RootNavigator />;
   }
 }

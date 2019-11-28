@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, View, Dimensions, Image, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  Dimensions,
+  Image,
+  StyleSheet,
+  ScrollView
+} from "react-native";
 import { ScreenOrientation } from "expo";
 import colors from "../constants/Colors/Colors";
 
@@ -34,11 +41,11 @@ export default function MealDetails(props) {
           return <Text style={styles.textSteps}>{`${i}: ${step}`}.</Text>;
         })}
       </View>
-      <View style={styles.ctgContainer}>
+      <ScrollView style={styles.ctgContainer}>
         {categories.map(cat => {
           return <Text style={styles.textCat}>{`${cat}`}</Text>;
         })}
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -49,11 +56,12 @@ const styles = StyleSheet.create({
     height: Dimensions.get("window").height * 0.3
   },
   container: {
-    width: "90%",
+    flex: 1,
     alignItems: "center",
     justifyContent: "center"
   },
   imgContainer: {
+    flex: 1,
     borderWidth: 3,
     borderColor: "black",
     overflow: "hidden",
@@ -62,7 +70,8 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     backgroundColor: "white",
-    padding: 10
+    padding: 10,
+    flex: 1
   },
   textSteps: {
     color: "black",
@@ -70,9 +79,11 @@ const styles = StyleSheet.create({
   },
   textCat: {},
   ctgContainer: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
-    width: "90%"
+    width: "90%",
+    height: Dimensions.get("window").height * 0.5
   }
 });

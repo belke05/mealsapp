@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import CustomButton from "../components/CustomButton";
 import MealDetails from "../components/MealDetails";
-import StarIcon from "../components/StarIcon";
+import HeaderIcons from "../components/HeaderIcons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import { Meals } from "../data/test_data";
@@ -50,10 +50,15 @@ DetailScreen.navigationOptions = navigationData => {
   return {
     headerTitle: title,
     headerRight: (
-      <HeaderButtons HeaderButtonComponent={StarIcon}>
+      <HeaderButtons HeaderButtonComponent={HeaderIcons}>
         <Item
           title="favorite_me"
           iconName="ios-star"
+          onPress={onPressHandler}
+        />
+        <Item
+          title="plan_me"
+          iconName="ios-calendar"
           onPress={onPressHandler}
         />
       </HeaderButtons>

@@ -5,7 +5,6 @@ import RecipeList from "../components/RecipeList";
 
 function CategoryScreen(props) {
   const catId = props.navigation.getParam("categoryId");
-
   const meals = Meals.filter(({ categoryIds }) => {
     return categoryIds.includes(catId);
   });
