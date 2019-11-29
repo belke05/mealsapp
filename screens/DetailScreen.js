@@ -4,7 +4,6 @@ import CustomButton from "../components/CustomButton";
 import MealDetails from "../components/MealDetails";
 import HeaderIcons from "../components/HeaderIcons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-
 import { Meals } from "../data/test_data";
 
 export default function DetailScreen(props) {
@@ -70,7 +69,6 @@ const styles = StyleSheet.create({
     flexDirection: "column"
   },
   btncontainer: {
-    justifySelf: "flex-end",
     width: 60,
     flexDirection: "row",
     justifyContent: "space-evenly",

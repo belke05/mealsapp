@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flex: 1,
     alignSelf: "center",
-    justifySelf: "center",
     height: "100%"
   }
 });

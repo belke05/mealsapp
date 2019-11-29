@@ -7,6 +7,7 @@ import CategoryScreen from "../screens/CategoryScreen";
 import DetailScreen from "../screens/DetailScreen";
 import FavouritesScreen from "../screens/FavouritesScreen";
 import PlanningScreen from "../screens/PlanningScreen";
+import FilterScreen from "../screens/FilterScreen";
 // -----
 
 // ----- visual assets
@@ -39,7 +40,7 @@ const defaul_StackOptions_Config = {
 
 // -----
 
-// ----- Stack Navigators Fav and Main
+// ----- Stack Navigators Fav and Main and Stack (for a header)
 
 const MainStackNavigator = createStackNavigator(
   {
@@ -69,6 +70,17 @@ const FavStackNavigator = createStackNavigator(
     },
     Detail: {
       screen: DetailScreen
+    }
+  },
+  {
+    defaultNavigationOptions: defaul_StackOptions_Config
+  }
+);
+
+const FilterStackNavigator = createStackNavigator(
+  {
+    filter: {
+      screen: FilterScreen
     }
   },
   {
@@ -155,9 +167,9 @@ const TabNavigator =
 // ------ drawer navigator is our route in
 
 const MainNavigator = createDrawerNavigator({
-  Home: {
-    screen: TabNavigator
-  }
+  Home: { screen: TabNavigator },
+  Filters: { screen: FilterStackNavigator }
+  // the button for this is defined in the categoryscreen
 });
 
 // ------

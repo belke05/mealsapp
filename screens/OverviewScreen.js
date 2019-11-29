@@ -1,7 +1,9 @@
 import React from "react";
-import { View, Text, Button, FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import CategoryContainer from "../components/CategoryContainer";
 import { Categories } from "../data/test_data";
+import HeaderIcons from "../components/HeaderIcons";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import colors from "../constants/Colors/Colors";
 
 export default function OverviewScreen(props) {
@@ -36,6 +38,23 @@ export default function OverviewScreen(props) {
     />
   );
 }
+
+OverviewScreen.navigationOptions = navigationData => {
+  return {
+    headerTitle: "categories",
+    headerLeft: (
+      <HeaderButtons HeaderButtonComponent={HeaderIcons}>
+        <Item
+          title="Menu"
+          iconName="ios-menu"
+          onPress={() => {
+            navigationData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    )
+  };
+};
 
 const styles = StyleSheet.create({
   screen: {

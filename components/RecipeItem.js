@@ -70,8 +70,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     height: "15%",
-    backgroundColor: colors.darkblue,
-    justifySelf: "flex-end"
+    backgroundColor: colors.darkblue
   },
   titleContainer: {
     backgroundColor: "rgba(0,0,0,0.5)",

@@ -16,3 +16,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   }
 });
+
+FilterScreen.navigationOptions = {
+  headerTitle: "meal filter"
+};
