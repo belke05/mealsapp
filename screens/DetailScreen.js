@@ -22,15 +22,12 @@ export default function DetailScreen(props) {
   };
 
   return (
-    <View style={{ flex: 1, height: "100%" }}>
-      <View style={styles.screen}>
-        <MealDetails meal={meal} />
-      </View>
-      <View style={styles.btncontainer}>
-        <CustomButton onPressHandler={goToHome} style={styles.homeBtn}>
-          go back to home
-        </CustomButton>
-      </View>
+    <View style={{ flex: 1 }}>
+      <MealDetails meal={meal} />
+
+      <CustomButton onPressHandler={goToHome} style={styles.btncontainer}>
+        go back to home
+      </CustomButton>
     </View>
   );
 }
@@ -74,7 +71,7 @@ const styles = StyleSheet.create({
   },
   btncontainer: {
     justifySelf: "flex-end",
-    flex: 1,
+    width: 60,
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "flex-end",

@@ -1,11 +1,10 @@
 import React from "react";
-import { Text, View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import RecipeItem from "./RecipeItem";
 
 export default function RecipeList(props) {
   const renderMealItem = itemData => {
     const { item } = itemData;
-    console.log("item id", item.id);
     return (
       <RecipeItem
         img={item.imageUrl}
@@ -21,7 +20,6 @@ export default function RecipeList(props) {
     <View style={styles.screen}>
       <FlatList
         style={styles.flatlist}
-        numColumns={2}
         data={props.meals}
         renderItem={renderMealItem}
         keyExtractor={item => item.id}

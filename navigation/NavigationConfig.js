@@ -1,23 +1,88 @@
 import React from "react";
+import { Platform, Text } from "react-native";
+
+// ----- screens
 import OverviewScreen from "../screens/OverviewScreen";
 import CategoryScreen from "../screens/CategoryScreen";
 import DetailScreen from "../screens/DetailScreen";
 import FavouritesScreen from "../screens/FavouritesScreen";
 import PlanningScreen from "../screens/PlanningScreen";
+// -----
+
+// ----- visual assets
+
+import colors from "../constants/Colors/Colors";
 import TabBarIcon from "../components/TabBarIcon";
+
+// -----
+
+// ----- Navigation creators
+
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
-// import { createDrawerNavigator } from "react-navigation-drawer";
-import colors from "../constants/Colors/Colors";
-import { Platform } from "@unimodules/core";
-// import "react-native-gesture-handler";
+import { createDrawerNavigator } from "react-navigation-drawer";
+
+// ----- default options for our stack Main and Fav
+// nice to config header styling here
+
+const defaul_StackOptions_Config = {
+  headerStyle: {
+    backgroundColor: colors.lightred
+  },
+  headerTintColor: "white",
+  headerTitleStyle: {
+    fontWeight: "bold"
+  }
+};
+
+// -----
+
+// ----- Stack Navigators Fav and Main
+
+const MainStackNavigator = createStackNavigator(
+  {
+    Overview: {
+      screen: OverviewScreen,
+      navigationOptions: {
+        headerTitle: "Meal Planner"
+      }
+    },
+    Category: { screen: CategoryScreen },
+    Detail: {
+      screen: DetailScreen
+    }
+  },
+  {
+    defaultNavigationOptions: defaul_StackOptions_Config
+  }
+);
+
+const FavStackNavigator = createStackNavigator(
+  {
+    Favourites: {
+      screen: FavouritesScreen,
+      navigationOptions: {
+        headerTitle: "Favourites"
+      }
+    },
+    Detail: {
+      screen: DetailScreen
+    }
+  },
+  {
+    defaultNavigationOptions: defaul_StackOptions_Config
+  }
+);
+
+// ---- config for our tab which will be the entry point into the app
+// ---- from here we will by default load the main stack navigator
+// ---- we can also access our favourites stack
 
 const tabScreenConfig = {
   Meals: {
-    screen: StackNavigator,
-    // will configure our nested stack navigator
+    screen: MainStackNavigator,
     navigationOptions: {
       tabBarLabel: "Home",
       tabBarIcon: tabInfo => {
@@ -45,7 +110,7 @@ const tabScreenConfig = {
     }
   },
   Favourites: {
-    screen: FavouritesStackNavigator,
+    screen: FavStackNavigator,
     navigationOptions: {
       tabBarLabel: "Favourites",
       tabBarIcon: ({ tintColor, focused }) => {
@@ -62,53 +127,10 @@ const tabScreenConfig = {
   }
 };
 
-const StackOptionsConfig = {
-  headerStyle: {
-    backgroundColor: colors.lightred
-  },
-  headerTintColor: "white",
-  headerTitleStyle: {
-    fontWeight: "bold"
-  }
-};
+// -----
 
-// returns a react component
-const StackNavigator = createStackNavigator(
-  {
-    Overview: {
-      screen: OverviewScreen,
-      navigationOptions: {
-        headerTitle: "Meal Planner"
-      }
-    },
-    Category: { screen: CategoryScreen },
-    Detail: {
-      screen: DetailScreen
-    }
-  },
-  {
-    /* The header config from HomeScreen is now here */
-    defaultNavigationOptions: StackOptionsConfig
-  }
-);
-
-const FavouritesStackNavigator = createStackNavigator(
-  {
-    Favourites: {
-      screen: FavouritesScreen,
-      navigationOptions: {
-        headerTitle: "Favourites"
-      }
-    },
-    Detail: {
-      screen: DetailScreen
-    }
-  },
-  {
-    /* The header config from HomeScreen is now here */
-    defaultNavigationOptions: StackOptionsConfig
-  }
-);
+// ----- tab navigator is on the bottom this will be nested
+// in the drawer navigator
 
 const TabNavigator =
   Platform.OS == "android"
@@ -128,7 +150,19 @@ const TabNavigator =
         }
       });
 
+// ------
+
+// ------ drawer navigator is our route in
+
+const MainNavigator = createDrawerNavigator({
+  Home: {
+    screen: TabNavigator
+  }
+});
+
+// ------
+
 // will be the root component
-const RootNavigator = createAppContainer(TabNavigator);
+const RootNavigator = createAppContainer(MainNavigator);
 
 export default RootNavigator;

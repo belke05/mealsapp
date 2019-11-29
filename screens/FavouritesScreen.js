@@ -1,25 +1,22 @@
 import React from "react";
 import { View, Text } from "react-native";
 import RecipeList from "../components/RecipeList";
+import { Meals } from "../data/test_data";
 
 export default function FavouritesScreen(props) {
   const favMeals = props.navigation.getParam("favMeals");
-  const meals = Meals.filter(({ id }) => {
-    return favMeals.includes(id);
+  const favTest = ["m1", "m2"];
+  const filteredMeals = Meals.filter(({ id }) => {
+    return favTest.includes(id);
   });
-
   const onPressHandler = mealId => {
     props.navigation.navigate({
       routeName: "Detail",
       params: {
-        favMeal: mealId
+        meal: mealId
       }
     });
   };
 
-  return (
-    <View>
-      <RecipeList meals={meals} onPressHandler={onPressHandler} />
-    </View>
-  );
+  return <RecipeList meals={filteredMeals} onPressHandler={onPressHandler} />;
 }

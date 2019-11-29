@@ -12,12 +12,9 @@ import colors from "../constants/Colors/Colors";
 
 export default function MealDetails(props) {
   const meal = props.meal;
-  const stepsList = meal.steps
-    .toString()
-    .split(".")
-    .map(step => {
-      return step[0] == "," ? step.slice(1) : step;
-    });
+  const stepsList = meal.steps.split(".").map(step => {
+    return step[0] == "," ? step.slice(1) : step;
+  });
   let categories = ["Vegan", "Vegetarian", "Lactose Free", "Gluten Free"];
   meal.isGlutenFree
     ? null
@@ -30,7 +27,6 @@ export default function MealDetails(props) {
     ? null
     : categories.splice(categories.indexOf("Vegetarian"), 1);
 
-  console.log(stepsList, "steplist");
   return (
     <View style={styles.container}>
       <View style={styles.imgContainer}>
@@ -61,7 +57,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   imgContainer: {
-    flex: 1,
+    height: Dimensions.get("window").height * 0.3,
     borderWidth: 3,
     borderColor: "black",
     overflow: "hidden",
@@ -70,8 +66,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     backgroundColor: "white",
-    padding: 10,
-    flex: 1
+    padding: 10
   },
   textSteps: {
     color: "black",
@@ -79,7 +74,6 @@ const styles = StyleSheet.create({
   },
   textCat: {},
   ctgContainer: {
-    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",

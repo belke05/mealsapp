@@ -1,6 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Categories, Meals } from "../data/test_data";
+import { Meals } from "../data/test_data";
 import RecipeList from "../components/RecipeList";
 
 function CategoryScreen(props) {
@@ -18,11 +17,7 @@ function CategoryScreen(props) {
     });
   };
 
-  return (
-    <View style={styles.screen}>
-      <RecipeList meals={meals} onPressHandler={onPressHandler} />
-    </View>
-  );
+  return <RecipeList meals={meals} onPressHandler={onPressHandler} />;
 }
 
 CategoryScreen.navigationOptions = navigationData => {
@@ -31,12 +26,5 @@ CategoryScreen.navigationOptions = navigationData => {
     headerTitle: name
   };
 };
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    height: "100%"
-  }
-});
 
 export default CategoryScreen;
