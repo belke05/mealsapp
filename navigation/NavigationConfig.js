@@ -13,7 +13,7 @@ import FilterScreen from "../screens/FilterScreen";
 // ----- visual assets
 
 import colors from "../constants/Colors/Colors";
-import TabBarIcon from "../components/TabBarIcon";
+import TabBarIcon from "../components/specific/TabBarIcon";
 
 // -----
 
@@ -34,7 +34,12 @@ const defaul_StackOptions_Config = {
   },
   headerTintColor: "white",
   headerTitleStyle: {
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontFamily: "roboto-regular"
+  },
+  headerBackTitleStyle: {
+    fontWeight: "bold",
+    fontFamily: "roboto-regular"
   }
 };
 
@@ -96,7 +101,12 @@ const tabScreenConfig = {
   Meals: {
     screen: MainStackNavigator,
     navigationOptions: {
-      tabBarLabel: "Home",
+      tabBarLabel:
+        Platform.OS === "android" ? (
+          <Text style={{ fontFamily: "roboto-regular" }}>Meals</Text>
+        ) : (
+          "Meals"
+        ),
       tabBarIcon: tabInfo => {
         return (
           <TabBarIcon
@@ -112,7 +122,12 @@ const tabScreenConfig = {
   Planning: {
     screen: PlanningScreen,
     navigationOptions: {
-      tabBarLabel: "Planning",
+      tabBarLabel:
+        Platform.OS === "android" ? (
+          <Text style={{ fontFamily: "roboto-regular" }}>Planning</Text>
+        ) : (
+          "Planning"
+        ),
       tabBarIcon: ({ tintColor }) => {
         return <TabBarIcon name={`ios-calendar`} size={20} color={tintColor} />;
       },
@@ -124,7 +139,12 @@ const tabScreenConfig = {
   Favourites: {
     screen: FavStackNavigator,
     navigationOptions: {
-      tabBarLabel: "Favourites",
+      tabBarLabel:
+        Platform.OS === "android" ? (
+          <Text style={{ fontFamily: "roboto-regular" }}>Favourites</Text>
+        ) : (
+          "Favourites"
+        ),
       tabBarIcon: ({ tintColor, focused }) => {
         return (
           <TabBarIcon
@@ -157,6 +177,9 @@ const TabNavigator =
         // are not merged with the screen
         defaultNavigationOptions: ({ navigation }) => ({}),
         tabBarOptions: {
+          labelStyle: {
+            fontFamily: "roboto-regular"
+          },
           activeTintColor: colors.darkred,
           inactiveTintColor: colors.lightred
         }
@@ -166,11 +189,31 @@ const TabNavigator =
 
 // ------ drawer navigator is our route in
 
-const MainNavigator = createDrawerNavigator({
-  Home: { screen: TabNavigator },
-  Filters: { screen: FilterStackNavigator }
-  // the button for this is defined in the categoryscreen
-});
+const MainNavigator = createDrawerNavigator(
+  {
+    Home: {
+      screen: TabNavigator,
+      navigationOptions: {
+        drawerLabel: "Meals"
+      }
+    },
+    Filters: {
+      screen: FilterStackNavigator,
+      navigationOptions: {
+        drawerLabel: "Filters"
+      }
+    }
+  },
+  {
+    contentOptions: {
+      activeTintColor: colors.darkred,
+      inactiveTintColor: colors.lightred,
+      labelStyle: {
+        fontWeight: "bold"
+      }
+    }
+  }
+);
 
 // ------
 

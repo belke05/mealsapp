@@ -1,17 +1,25 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
-import CustomButton from "../components/CustomButton";
-import MealDetails from "../components/MealDetails";
-import HeaderIcons from "../components/HeaderIcons";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Dimensions,
+  Image
+} from "react-native";
+import DetailsRow from "../components/specific/DetailsRow";
+import MealDetails from "../components/specific/MealDetails";
+import HeaderIcons from "../components/regular/HeaderIcons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { Meals } from "../data/test_data";
+import colors from "./../constants/Colors/Colors";
 
 export default function DetailScreen(props) {
   const mealId = props.navigation.getParam("meal");
   const meal = Meals.find(({ id }) => {
-    // id, "id from meal" // mealId, "param mealId"
     return id == mealId;
   });
+
   const goToHome = () => {
     props.navigation.popToTop();
   };
@@ -20,14 +28,59 @@ export default function DetailScreen(props) {
     props.navigation.pop();
   };
 
-  return (
-    <View style={{ flex: 1 }}>
-      <MealDetails meal={meal} />
+  const categories = checkCategories();
+  function checkCategories() {
+    let cats = ["Vegan", "Vegetarian", "Lactose Free", "Gluten Free"];
+    meal.isGlutenFree ? null : cats.splice(cats.indexOf("Lactose Free"), 1);
+    meal.isLactoseFree ? null : cats.splice(cats.indexOf("Gluten Free"), 1);
+    meal.isVegan ? null : cats.splice(cats.indexOf("Vegan"), 1);
+    meal.isVegetarian ? null : cats.splice(cats.indexOf("Vegetarian"), 1);
+    return cats;
+  }
 
-      <CustomButton onPressHandler={goToHome} style={styles.btncontainer}>
-        go back to home
-      </CustomButton>
-    </View>
+  return (
+    <ScrollView contentContainerStyle={{ alignItems: "center" }}>
+      <View style={styles.container}>
+        <View style={styles.imgContainer}>
+          <Image source={{ uri: meal.imageUrl }} style={styles.img} />
+        </View>
+        <DetailsRow
+          style={styles.mealDetail}
+          complexity={meal.complexity}
+          affordability={meal.affordability}
+          duration={meal.duration}
+        />
+
+        <Text style={styles.title}>Ingredients</Text>
+        <View style={styles.ingredientView}>
+          {meal.ingredients.map((ingredient, i) => {
+            return (
+              <Text key={i} style={styles.text}>
+                {`${
+                  i < meal.ingredients.length - 1
+                    ? ingredient + ", "
+                    : ingredient + "."
+                }`}
+              </Text>
+            );
+          })}
+        </View>
+        <Text style={styles.title}>Steps</Text>
+        {meal.steps.map((step, i) => {
+          return (
+            <View key={i} style={styles.stepView}>
+              <Text style={{ ...styles.text, paddingRight: 10 }}>{`${i}`}</Text>
+              <Text style={styles.text}>{`${step}`}</Text>
+            </View>
+          );
+        })}
+      </View>
+      <View style={styles.categoryView}>
+        {categories.map((cat, i) => {
+          return <Text key={i} style={styles.textCat}>{`${cat}`}</Text>;
+        })}
+      </View>
+    </ScrollView>
   );
 }
 
@@ -63,18 +116,69 @@ DetailScreen.navigationOptions = navigationData => {
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    justifyContent: "flex-start",
+  container: {
     alignItems: "center",
-    flexDirection: "column"
+    justifyContent: "center"
   },
-  btncontainer: {
-    width: 60,
+  img: {
+    width: Dimensions.get("window").width * 0.9,
+    height: Dimensions.get("window").height * 0.3
+  },
+  imgContainer: {
+    height: Dimensions.get("window").height * 0.3,
+    borderWidth: 3,
+    borderColor: "black",
+    overflow: "hidden",
+    borderRadius: 5,
+    marginVertical: Dimensions.get("window").height * 0.04
+  },
+  textContainer: {
+    backgroundColor: "white",
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  text: {
+    color: "black",
+    fontFamily: "roboto-regular"
+  },
+  textCat: { marginHorizontal: 5, marginBottom: 10 },
+  ctgContainer: {
     flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-evenly",
-    alignItems: "flex-end",
-    marginBottom: 20
+    width: "90%"
   },
-  catBtn: {},
-  homeBtn: {}
+  mealDetail: {
+    width: "60%",
+    padding: 10,
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    borderColor: colors.darkblue,
+    borderWidth: 2
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 20,
+    marginVertical: 8
+  },
+  stepView: {
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    marginVertical: 5,
+    paddingBottom: 5,
+    width: Dimensions.get("window").width * 0.8,
+    borderBottomWidth: 2,
+    borderBottomColor: colors.darkblue
+  },
+  ingredientView: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  categoryView: {
+    flexDirection: "row",
+    marginTop: 10
+  }
 });

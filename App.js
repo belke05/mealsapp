@@ -8,7 +8,7 @@ useScreens();
 
 const fetchFonts = () => {
   return Font.loadAsync({
-    // "roboto-bold": require("./assets/fonts/Roboto-Bold.ttf")
+    "roboto-regular": require("./assets/fonts/Roboto-Regular.ttf")
   });
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Meals } from "../data/test_data";
-import RecipeList from "../components/RecipeList";
-import HeaderIcons from "../components/HeaderIcons";
+import RecipeList from "../components/specific/RecipeList";
+import HeaderIcons from "../components/regular/HeaderIcons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 function CategoryScreen(props) {

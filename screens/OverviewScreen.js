@@ -1,11 +1,10 @@
 import React from "react";
 import { FlatList, StyleSheet } from "react-native";
-import CategoryContainer from "../components/CategoryContainer";
+import CategoryContainer from "../components/specific/CategoryContainer";
 import { Categories } from "../data/test_data";
-import HeaderIcons from "../components/HeaderIcons";
+import HeaderIcons from "../components/regular/HeaderIcons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import colors from "../constants/Colors/Colors";
-
 export default function OverviewScreen(props) {
   function renderGridItem(itemData) {
     const onPressHandler = () => {

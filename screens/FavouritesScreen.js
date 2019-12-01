@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
-import RecipeList from "../components/RecipeList";
+import RecipeList from "../components/specific/RecipeList";
 import { Meals } from "../data/test_data";
 
 export default function FavouritesScreen(props) {

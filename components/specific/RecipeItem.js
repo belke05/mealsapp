@@ -5,14 +5,14 @@ import {
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
-  Dimensions,
   TouchableNativeFeedback,
   Platform
 } from "react-native";
-import { ScreenOrientation } from "expo";
-import colors from "../constants/Colors/Colors";
+import DetailsRow from "../specific/DetailsRow";
+import colors from "../../constants/Colors/Colors";
 
 export default function RecipeItem(props) {
+  const meal = props.meal;
   let TouchableCmpnt = TouchableOpacity;
   if (Platform.OS === "android" && Platform.Version >= 21) {
     TouchableCmpnt = TouchableNativeFeedback;
@@ -22,22 +22,23 @@ export default function RecipeItem(props) {
     <View style={styles.mealItem}>
       <TouchableCmpnt
         onPress={() => {
-          props.onPressHandler(props.meal.id);
+          props.onPressHandler(meal.id);
         }}
       >
         <View>
           <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
             <ImageBackground style={styles.bgImg} source={{ uri: props.img }}>
               <View style={styles.titleContainer}>
-                <Text style={styles.headerText}>{props.meal.title}</Text>
+                <Text style={styles.headerText}>{meal.title}</Text>
               </View>
             </ImageBackground>
           </View>
-          <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-            <Text style={styles.title}>{props.meal.duration}min</Text>
-            <Text style={styles.title}>{props.meal.complexity}</Text>
-            <Text style={styles.title}>{props.meal.affordability}</Text>
-          </View>
+          <DetailsRow
+            style={styles.mealDetail}
+            complexity={meal.complexity}
+            affordability={meal.affordability}
+            duration={meal.duration}
+          />
         </View>
       </TouchableCmpnt>
     </View>
@@ -76,11 +77,6 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.5)",
     paddingVertical: 5,
     paddingHorizontal: 12,
-    textAlign: "center"
-  },
-  title: {
-    fontSize: 15,
-    color: "white",
     textAlign: "center"
   },
   headerText: {

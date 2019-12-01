@@ -81,7 +81,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: "roboto-regular"
   },
   image: {
     width: "100%",
