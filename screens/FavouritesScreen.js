@@ -1,14 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
 import RecipeList from "../components/specific/RecipeList";
-import { Meals } from "../data/test_data";
+import { useSelector } from "react-redux";
 
 export default function FavouritesScreen(props) {
-  const favMeals = props.navigation.getParam("favMeals");
-  const favTest = ["m1", "m2"];
-  const filteredMeals = Meals.filter(({ id }) => {
-    return favTest.includes(id);
-  });
+  const filteredMeals = useSelector(state => state.meals.allmeals);
   const onPressHandler = mealId => {
     props.navigation.navigate({
       routeName: "Detail",

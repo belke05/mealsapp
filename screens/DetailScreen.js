@@ -11,12 +11,13 @@ import DetailsRow from "../components/specific/DetailsRow";
 import MealDetails from "../components/specific/MealDetails";
 import HeaderIcons from "../components/regular/HeaderIcons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { Meals } from "../data/test_data";
+import { useSelector } from "react-redux";
 import colors from "./../constants/Colors/Colors";
 
 export default function DetailScreen(props) {
   const mealId = props.navigation.getParam("meal");
-  const meal = Meals.find(({ id }) => {
+  const filteredMeals = useSelector(state => state.meals.filteredmeals);
+  const meal = filteredMeals.find(({ id }) => {
     return id == mealId;
   });
 
@@ -89,13 +90,7 @@ DetailScreen.navigationOptions = navigationData => {
     console.log("hello world");
   };
   const mealId = navigationData.navigation.getParam("meal");
-  const foundMeal = Meals.find(({ id }) => {
-    return id == mealId;
-  });
-  let title;
-  foundMeal.title.length > 20
-    ? (title = "delicious")
-    : (title = foundMeal.title);
+  let title = "delicious";
   return {
     headerTitle: title,
     headerRight: (

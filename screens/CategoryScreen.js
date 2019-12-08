@@ -1,15 +1,15 @@
 import React from "react";
-import { Meals } from "../data/test_data";
 import RecipeList from "../components/specific/RecipeList";
 import HeaderIcons from "../components/regular/HeaderIcons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { useSelector } from "react-redux";
 
 function CategoryScreen(props) {
   const catId = props.navigation.getParam("categoryId");
-  const meals = Meals.filter(({ categoryIds }) => {
-    return categoryIds.includes(catId);
-  });
-
+  const filteredMeals = useSelector(state => state.meals.filteredmeals);
+  const meals = filteredMeals.filter(({ categoryIds }) =>
+    categoryIds.includes(catId)
+  );
   const onPressHandler = MealId => {
     props.navigation.navigate({
       routeName: "Detail",
