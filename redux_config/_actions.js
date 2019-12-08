@@ -1,4 +1,4 @@
-export const ADD_FAVOURITES = "ADD_FAVOURITES";
+export const TOGGLE_FAVOURITES = "TOGGLE_FAVOURITES";
 export const REMOVE_FAVOURITES = "REMOVE_FAVOURITES";
 export const RESET_FILTER = "RESET_FILTER";
 export const UPDATE_FILTER = "UPDATE_FILTERS";
@@ -10,16 +10,9 @@ export const meal_filters = {
   isLactoseFree: false
 };
 
-export const add_favourites = meal_id => {
+export const toggle_favourites = meal_id => {
   return {
-    type: ADD_FAVOURITES,
-    meal_id: meal_id
-  };
-};
-
-export const remove_favourites = meal_id => {
-  return {
-    type: REMOVE_FAVOURITES,
+    type: TOGGLE_FAVOURITES,
     meal_id: meal_id
   };
 };

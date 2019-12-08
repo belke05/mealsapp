@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useCallback } from "react";
 import {
   View,
   Text,
@@ -8,10 +8,10 @@ import {
   Image
 } from "react-native";
 import DetailsRow from "../components/specific/DetailsRow";
-import MealDetails from "../components/specific/MealDetails";
+import { toggle_favourites } from "../redux_config/_actions";
 import HeaderIcons from "../components/regular/HeaderIcons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import colors from "./../constants/Colors/Colors";
 
 export default function DetailScreen(props) {
@@ -20,6 +20,16 @@ export default function DetailScreen(props) {
   const meal = filteredMeals.find(({ id }) => {
     return id == mealId;
   });
+
+  const dispatch = useDispatch();
+
+  const toggleFavouriteHandler = useCallback(() => {
+    dispatch(toggle_favourites(mealId));
+  }, [dispatch, mealId]);
+
+  useEffect(() => {
+    props.navigation.setParams({ toggleFav: toggleFavouriteHandler });
+  }, [toggleFavouriteHandler]);
 
   const goToHome = () => {
     props.navigation.popToTop();
@@ -89,7 +99,7 @@ DetailScreen.navigationOptions = navigationData => {
   const onPressHandler = () => {
     console.log("hello world");
   };
-  const mealId = navigationData.navigation.getParam("meal");
+  const toggleFavorite = navigationData.navigation.getParam("toggleFav");
   let title = navigationData.navigation.getParam("mealTitle");
   return {
     headerTitle: title,
@@ -98,7 +108,7 @@ DetailScreen.navigationOptions = navigationData => {
         <Item
           title="favorite_me"
           iconName="ios-star"
-          onPress={onPressHandler}
+          onPress={toggleFavorite}
         />
         <Item
           title="plan_me"

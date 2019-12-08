@@ -4,7 +4,7 @@ import RecipeList from "../components/specific/RecipeList";
 import { useSelector } from "react-redux";
 
 export default function FavouritesScreen(props) {
-  const filteredMeals = useSelector(state => state.meals.allmeals);
+  const favouriteMeals = useSelector(state => state.meals.favourites);
   const onPressHandler = (mealId, MealTitle) => {
     props.navigation.navigate({
       routeName: "Detail",
@@ -15,5 +15,5 @@ export default function FavouritesScreen(props) {
     });
   };
 
-  return <RecipeList meals={filteredMeals} onPressHandler={onPressHandler} />;
+  return <RecipeList meals={favouriteMeals} onPressHandler={onPressHandler} />;
 }
