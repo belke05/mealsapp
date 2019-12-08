@@ -10,11 +10,12 @@ function CategoryScreen(props) {
   const meals = filteredMeals.filter(({ categoryIds }) =>
     categoryIds.includes(catId)
   );
-  const onPressHandler = MealId => {
+  const onPressHandler = (MealId, MealTitle) => {
     props.navigation.navigate({
       routeName: "Detail",
       params: {
-        meal: MealId
+        meal: MealId,
+        mealTitle: MealTitle
       }
     });
   };

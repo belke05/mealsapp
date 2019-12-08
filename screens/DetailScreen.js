@@ -90,7 +90,7 @@ DetailScreen.navigationOptions = navigationData => {
     console.log("hello world");
   };
   const mealId = navigationData.navigation.getParam("meal");
-  let title = "delicious";
+  let title = navigationData.navigation.getParam("mealTitle");
   return {
     headerTitle: title,
     headerRight: (
