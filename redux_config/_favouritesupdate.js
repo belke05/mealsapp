@@ -1,13 +1,11 @@
 import { UPDATE_FAVOURITES } from "./_actions";
 
-
-
-export default favourites(state, action) {
+export default function favourites(state, action) {
   switch (action.type) {
     case UPDATE_FAVOURITES:
-      return 
+      return;
       break;
     default:
-      Object.assign([], [...state])
+      Object.assign([], [...state]);
   }
 }

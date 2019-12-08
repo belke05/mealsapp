@@ -9,10 +9,14 @@ const StartState = {
 };
 
 // when redux starts up it will run first time with this initial state
-export default function meals_app(state = StartState, action) {
-  return {
-    allmeals: Object.assign([], [...state.allmeals]),
-    filteredmeals: filters(state.allmeals, state.filters, action),
-    favourites: favourites(state.favourites, action)
-  };
-}
+// export default function meals_app(state = StartState, action) {
+//   return {
+//     allmeals: Object.assign([], [...state.allmeals]),
+//     filteredmeals: filters(state.allmeals, state.filters, action),
+//     favourites: favourites(state.favourites, action)
+//   };
+// }
+
+export const mealsReducer = (state = StartState, action) => {
+  return state;
+};

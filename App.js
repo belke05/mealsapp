@@ -3,6 +3,7 @@ import * as Font from "expo-font";
 import RootNavigator from "./navigation/NavigationConfig";
 import { AppLoading } from "expo";
 import { useScreens } from "react-native-screens";
+import Provider from "./redux_config/_store";
 
 useScreens();
 
@@ -32,6 +33,10 @@ export default class App extends Component {
         />
       );
     }
-    return <RootNavigator />;
+    return (
+      <Provider>
+        <RootNavigator />
+      </Provider>
+    );
   }
 }
