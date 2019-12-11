@@ -22,7 +22,7 @@ export default function RecipeItem(props) {
     <View style={styles.mealItem}>
       <TouchableCmpnt
         onPress={() => {
-          props.onPressHandler(meal.id, meal.title);
+          props.onPressHandler(meal.id, meal.title, props.isFav);
         }}
       >
         <View>

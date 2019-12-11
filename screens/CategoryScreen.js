@@ -7,15 +7,17 @@ import { useSelector } from "react-redux";
 function CategoryScreen(props) {
   const catId = props.navigation.getParam("categoryId");
   const filteredMeals = useSelector(state => state.meals.filteredmeals);
+  const favouriteMeals = useSelector(state => state.meals.favourites);
   const meals = filteredMeals.filter(({ categoryIds }) =>
     categoryIds.includes(catId)
   );
-  const onPressHandler = (MealId, MealTitle) => {
+  const onPressHandler = (MealId, MealTitle, isFav) => {
     props.navigation.navigate({
       routeName: "Detail",
       params: {
         meal: MealId,
-        mealTitle: MealTitle
+        mealTitle: MealTitle,
+        isFavourite: isFav
       }
     });
   };

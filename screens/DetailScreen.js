@@ -17,6 +17,9 @@ import colors from "./../constants/Colors/Colors";
 export default function DetailScreen(props) {
   const mealId = props.navigation.getParam("meal");
   const filteredMeals = useSelector(state => state.meals.filteredmeals);
+  const currentMealIsFavourite = useSelector(state => {
+    return state.meals.favourites.some(meal => meal.id === mealId);
+  });
   const meal = filteredMeals.find(({ id }) => {
     return id == mealId;
   });
@@ -30,6 +33,10 @@ export default function DetailScreen(props) {
   useEffect(() => {
     props.navigation.setParams({ toggleFav: toggleFavouriteHandler });
   }, [toggleFavouriteHandler]);
+
+  useEffect(() => {
+    props.navigation.setParams({ isFavourite: currentMealIsFavourite });
+  }, [currentMealIsFavourite]);
 
   const goToHome = () => {
     props.navigation.popToTop();
@@ -99,6 +106,7 @@ DetailScreen.navigationOptions = navigationData => {
   const onPressHandler = () => {
     console.log("hello world");
   };
+  const isFavourite = navigationData.navigation.getParam("isFavourite");
   const toggleFavorite = navigationData.navigation.getParam("toggleFav");
   let title = navigationData.navigation.getParam("mealTitle");
   return {
@@ -107,7 +115,7 @@ DetailScreen.navigationOptions = navigationData => {
       <HeaderButtons HeaderButtonComponent={HeaderIcons}>
         <Item
           title="favorite_me"
-          iconName="ios-star"
+          iconName={isFavourite ? "ios-star" : "ios-star-outline"}
           onPress={toggleFavorite}
         />
         <Item
