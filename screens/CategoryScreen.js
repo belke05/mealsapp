@@ -4,6 +4,7 @@ import RecipeList from "../components/specific/RecipeList";
 import HeaderIcons from "../components/regular/HeaderIcons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector } from "react-redux";
+import Emoji from "react-native-emoji";
 
 function CategoryScreen(props) {
   const catId = props.navigation.getParam("categoryId");
@@ -26,6 +27,7 @@ function CategoryScreen(props) {
     return (
       <View style={styles.content}>
         <Text>No meals, check filters?</Text>
+        <Emoji name="coffee" style={{ fontSize: 50 }} />
       </View>
     );
   }
