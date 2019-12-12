@@ -21,7 +21,8 @@ function CategoryScreen(props) {
       }
     });
   };
-  if (filteredMeals.length === 0) {
+  if (meals.length === 0) {
+    console.log("no meals");
     return (
       <View style={styles.content}>
         <Text>No meals, check filters?</Text>
@@ -54,8 +55,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "black"
+    justifyContent: "center"
   }
 });
 
