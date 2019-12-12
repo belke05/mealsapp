@@ -17,16 +17,9 @@ export const toggle_favourites = meal_id => {
   };
 };
 
-export const reset_filters = filter_indexes => {
+export const update_filters = filter_settings => {
   return {
     type: UPDATE_FILTER,
-    filters: filter_indexes
-  };
-};
-
-export const update_filters = filter_indexes => {
-  return {
-    type: UPDATE_FILTER,
-    filters: filter_indexes
+    filters: filter_settings
   };
 };

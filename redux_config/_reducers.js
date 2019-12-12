@@ -20,7 +20,7 @@ const StartState = {
 export const mealsReducer = (state = StartState, action) => {
   return {
     allmeals: Object.assign([], [...state.allmeals]),
-    filteredmeals: Object.assign([], [...state.filteredmeals]),
+    filteredmeals: filters(state.allmeals, state.filteredmeals, action),
     favourites: favourites(state.allmeals, state.favourites, action)
   };
 };
